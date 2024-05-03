@@ -24,7 +24,13 @@ void osc_proto::pose(const double* data, const double*)
     char buffer[buffer_size] = {};
     osc::OutboundPacketStream p{buffer, buffer_size};
     auto q = QQuaternion::fromEulerAngles((float)data[Pitch], (float)data[Yaw], (float)-data[Roll]).normalized();
+
     p << osc::BeginMessage("/bridge/quat") << q.scalar() << q.x() << q.y() << q.z() << osc::EndMessage;
+    sock.writeDatagram(p.Data(), (int)p.Size(), dest, port);
+
+    p.Clear();
+
+    p << osc::BeginMessage("/bridge/xyz") << data[TX] << data[TY] << data[TZ] << osc::EndMessage;
     sock.writeDatagram(p.Data(), (int)p.Size(), dest, port);
 }
 
