@@ -49,9 +49,9 @@ void test_tracker::data(double *data)
             x = -max + x;
         data[i+3] = x;
     }
-    data[0] = 5;
-    data[1] = 10;
-    data[2] = 15;
+    data[0] = 500.0;
+    data[1] = 1000.0;
+    data[2] = 1500.0;
 }
 
 test_dialog::test_dialog() // NOLINT(cppcoreguidelines-pro-type-member-init)

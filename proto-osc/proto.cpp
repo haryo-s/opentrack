@@ -30,7 +30,7 @@ void osc_proto::pose(const double* data, const double*)
 
     p.Clear();
 
-    p << osc::BeginMessage("/bridge/xyz") << data[TX] << data[TY] << data[TZ] << osc::EndMessage;
+    p << osc::BeginMessage("/bridge/xyz") << (float)data[TX] << (float)data[TY] << (float)data[TZ] << osc::EndMessage;
     sock.writeDatagram(p.Data(), (int)p.Size(), dest, port);
 }
 
